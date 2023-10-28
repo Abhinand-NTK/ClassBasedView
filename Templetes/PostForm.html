@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% if request.resolver_match.url_name == 'post-create' %}Create New Post{% else %}Edit Post{% endif %}</title>
+</head>
+<body>
+    <h1>{% if request.resolver_match.url_name == 'post-create' %}Create New Post{% else %}Edit Post{% endif %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">{% if request.resolver_match.url_name == 'post-create' %}Create Post{% else %}Save Changes{% endif %}</button>
+    </form>
+    <a href="{% url 'post-list' %}">Cancel</a>
+</body>
+</html>
